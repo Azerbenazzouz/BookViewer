@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React,{useState} from 'react'
+import data from './data'
+import Book from './Book'
+import './App.css'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [i,setI]=useState(0)
+    const book =data[i]
+    return (
+        <div>
+            <center><h1 className="headTitle">Books</h1></center>
+            <br />
+            <Book title={book.title} subtitle={book.subtitle} author={book.author} pages={book.pages} description={book.description} website={book.website}/>
+            <br />
+            <hr />
+            <center className="btn">
+                <button disabled={i===0} onClick={()=>{setI(0)}}>Début</button>
+                <button disabled={i===0} onClick={()=>{setI(i-1)}}>Arrière</button>
+                <button disabled={i===data.length-1} onClick={()=>{setI(i+1)}}>Avancer</button>
+            </center>
+
+        </div>
+    )
 }
 
-export default App;
+export default App
